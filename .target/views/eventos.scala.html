@@ -1,0 +1,35 @@
+@(evento: Form[models.Evento])
+@import helper._
+
+
+<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Insira as infromaçoes abaixo para cadastrar um evento no Hackfest</div>
+			<div class="panel-body">
+				<form action="/cadastrarEvento" method="post">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-6">
+								@inputText(evento("nome"), '_label -> "Nome", 'class -> "form-control")
+							</div>
+							<div class="col-md-6">
+								@inputDate(evento("data"), '_label -> "Data", 'class -> "form-control")
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								@inputText(evento("descricao"), '_label -> "Descri��o", 'class -> "form-control")
+							</div>
+						</div>
+					</div>
+					<hr>
+					<p align="center">
+						<a href="@routes.Application.index" class="btn btn-danger">Cancelar</a>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	

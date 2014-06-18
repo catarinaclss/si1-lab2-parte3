@@ -1,0 +1,16 @@
+@(id: Long, evento: models.Evento)
+
+<div class="panel panel-primary">
+		<div class="panel-heading">Informações sobre evento</div>
+		
+		<div class="panel-body">
+			<div class="col-md-8">
+			    <ul class="nav nav-pills nav-stacked painel">
+					<li>Nome: @evento.getNome()</li>
+					<li>Descrição: @evento.getDescricao()</li>
+					<li>Numero de inscritos: @evento.getParticipantes().size()</li>
+					<li>Data: @evento.getData()</li>
+				</ul>
+			</div>
+		</div>
+</div>

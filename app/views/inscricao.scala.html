@@ -1,0 +1,31 @@
+@(id: Long, participanteForm: Form[models.Participante])
+
+@import helper._
+
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Insira as Infroma��es para se cadastrar no Evento</div>
+			
+			<div class="panel-body">
+				<form action="/cadastrarEvento" method="post">
+				
+					<div class="form-group">
+						@inputText(participanteForm("nome"), '_label -> "Nome", 'class -> "form-control")
+							
+						@inputText(participanteForm("email"), '_label -> "Descri��o", 'class -> "form-control")							
+						
+					</div>
+					<hr>
+					<p align="center">
+						<a href="@routes.Application.index" class="btn btn-danger">Cancelar</a>
+						<button type="submit" class="btn btn-success">Inscrever-se</button>
+					</p>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+

@@ -1,0 +1,43 @@
+@(eventos: List[models.Evento])
+
+@import helper._
+
+
+
+	
+		<div class="panel panel-primary">
+		<div class="panel-heading">Incritos</div>
+		
+		<div class="panel-body">
+			<table class="table table-hover table-condensed">
+				<thead>
+					<tr align="center">
+						<th width="150" >Data</th>
+						
+						<th width="250" >Nome</th>
+						<th width="250" >E-mail</th>
+						<th width="150" >Evento</th>
+											
+		            </tr>
+				</thead>
+				<tbody>
+				@for(evento <- eventos){
+					@for(participante <- evento.getParticipantes){
+					
+						<tr class="success">
+							<td width="150">@evento.getData().format("dd MMMM yyyy")</td>
+							
+							<td width="250">@participante.getNome()</td>
+							
+							<td width="250">@participante.getEmail()</td>
+							<td width="150">@evento.getNome()</td>
+							
+						</tr>
+					}
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	

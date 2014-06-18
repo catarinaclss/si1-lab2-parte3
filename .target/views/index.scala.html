@@ -1,0 +1,47 @@
+@(message: String, eventos: List[models.Evento])
+
+
+
+	
+	@for(evento <- eventos){
+		<div class="panel panel-primary">
+		<div class="panel-heading">@evento.getNome()
+		<form action="/inscricao" method="post">
+		
+			<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()">Increva-se</button>
+			</a>
+		</form>	
+		<form action="/informacoes" method="get">
+			<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()">Informações</button>
+		</form>	
+		
+		</div>
+		<div class="panel-body">
+		<table class="table table-hover table-condensed">
+		
+				<thead>
+					<tr align="center">
+						<th width="120" >Nome</th>
+		            </tr>
+				</thead>
+				<tbody>
+					@for(tema <- evento.getTemas()){
+						<tr class="success">
+						<td width="150">@tema.getNome()</td>
+						</tr>
+					}
+				</tbody>
+					<thead>
+					<tr align="center">
+						<th width="120" >Total de inscritos: @evento.getParticipantes().size()</th>
+		            </tr>
+					</thead>
+					
+			</table>
+			</div>		
+	
+	
+	
+	
+						
+}
