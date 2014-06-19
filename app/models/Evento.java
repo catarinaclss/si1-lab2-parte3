@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,25 +8,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import play.data.validation.Constraints.Required;
 
-/**
- * Classe representa um evento Hackfest
- * 
- * @author Marcus Vinicius
- * @since 2014
- * 
- */
 
-@Entity
+@Entity(name = "Evento")
 public class Evento implements Comparable<Evento> {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 
 	@Column
@@ -42,11 +33,11 @@ public class Evento implements Comparable<Evento> {
 	@Required(message = "Data Obrigatória")
 	private String data;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name = "temas")
 	private List<Tema> temas;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name = "participantes")
 	private List<Participante> participantes;
 

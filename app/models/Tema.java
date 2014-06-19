@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 import play.data.validation.Constraints.Required;
 
-@Entity
+@Entity(name = "Tema")
 public class Tema {
 	
 	@Id
@@ -52,9 +52,8 @@ public class Tema {
 		if (getClass() != obj.getClass())
 			return false;
 		Tema other = (Tema) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
+		if (nome == null && other != null) {
+			return false;
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;

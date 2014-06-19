@@ -2,10 +2,38 @@
 @import helper._
 
 
-<div class="col-md-8">
-		<div class="panel panel-primary">
-			<div class="panel-heading">Insira as infromaçoes abaixo para cadastrar um evento no Hackfest</div>
-			<div class="panel-body">
+<html>
+
+	<head>
+		 <meta charset="UTF-8">
+		 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+	</head>
+	
+	<body>
+	
+	<!-- Barra -->
+    	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+            	<a href="#">
+                <img class="imagefloat" src=@routes.Assets.at("images/logo.png") alt="" style="float: left;  margin-top: 3px; margin-left: -38px;">
+          		</a>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+		
+	<br><br>
+
+	<!--  Conteudo Central -->
+		<div class="col-md-6" style="width: 1000px">
+		
+			<div class="panel panel-primary" style=" width: 800px; margin-left: 250px; margin-right:50px ;margin-top: 60px;">
+  				<div class="panel-heading" style="background-color: #4c4c4c">Insira as infromaçoes abaixo para cadastrar um evento no Hackfest</div>
+  					<div class="panel-body">
+
 				<form action="/cadastrarEvento" method="post">
 					<div class="form-group">
 						<div class="row">
@@ -32,4 +60,5 @@
 			</div>
 		</div>
 	</div>
+	</body>
 	

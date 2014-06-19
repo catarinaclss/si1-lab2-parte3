@@ -1,27 +1,36 @@
-@(message: String, eventos: List[models.Evento])
+@(eventos: List[models.Evento])
 
 
 
-	
+@main("Hackfests"){	
+@if(eventos.isEmpty()){
+
+		<div class = "content" >
+		<img src=@routes.Assets.at("images/tag-cloud.png") alt="" style="margin-left: 20%; margin-top: 15px; "></img>
+		</div>
+	}	else{		
+
 	@for(evento <- eventos){
-		<div class="panel panel-primary">
-		<div class="panel-heading">@evento.getNome()
-		<form action="/inscricao" method="post">
+		<div class="panel panel-primary" style=" width: 80%; margin-right:50px ;margin-top: 60px;">
+		<div class="panel-heading" style=" background-color: #4c4c4c;" >  @evento.getNome()
+		<form action="/inscricao" method="post" style="float: right;">
 		
 			<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()">Increva-se</button>
 			</a>
 		</form>	
-		<form action="/informacoes" method="get">
-			<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()">Informa��es</button>
+		<form action="/informacoes" method="post" style="float: right;">
+			<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()" style="margin-left: 10px;">Informações</button>
 		</form>	
-		
 		</div>
+		
+		
+		
 		<div class="panel-body">
 		<table class="table table-hover table-condensed">
 		
 				<thead>
 					<tr align="center">
-						<th width="120" >Nome</th>
+						<th width="120">Não há temas cadastrados</th>
 		            </tr>
 				</thead>
 				<tbody>
@@ -39,9 +48,10 @@
 					
 			</table>
 			</div>		
+	</div>
 	
 	
 	
-	
-						
+	}			
+	}
 }

@@ -1,16 +1,49 @@
-@(id: Long, evento: models.Evento)
+@(id: Long, evento : models.Evento)
 
-<div class="panel panel-primary">
-		<div class="panel-heading">Informações sobre evento</div>
+
+<head>
+		 <meta charset="UTF-8">
+		 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+	</head>
+	
+	<body>
+	
+	<!-- Barra -->
+    	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+            	<a href="#">
+                <img class="imagefloat" src=@routes.Assets.at("images/logo.png") alt="" style="float: left;  margin-top: 3px; margin-left: -38px;">
+          		</a>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
 		
-		<div class="panel-body">
-			<div class="col-md-8">
+	<br><br>
+
+	<!--  Conteudo Central -->
+		<div class="col-md-6" style="width: 1000px; height: 200px">
+		
+			<div class="panel panel-primary" style=" width: 800px; height:400px; margin-left: 250px; margin-right:50px ;margin-top: 60px; border-color: #4c4c4c;">
+  				<div class="panel-heading" style="background-color: #4c4c4c; height: 100px; margin-top: 20px">InformaÃ§Ãµes de evento</div>
+  					<div class="panel-body">
+
+				<div class="col-md-8">
 			    <ul class="nav nav-pills nav-stacked painel">
-					<li>Nome: @evento.getNome()</li>
-					<li>Descrição: @evento.getDescricao()</li>
-					<li>Numero de inscritos: @evento.getParticipantes().size()</li>
-					<li>Data: @evento.getData()</li>
+			    	
+					<li><b>Nome:</b> @evento.getNome()</li>
+					<br>
+					
+					<li><b>Descricao:</b> @evento.getDescricao() </li>
+					</div>
+					<br>
+					<li><b>Data:</b> @evento.getData()</li>
 				</ul>
 			</div>
 		</div>
 </div>
+</div>
+</body>
