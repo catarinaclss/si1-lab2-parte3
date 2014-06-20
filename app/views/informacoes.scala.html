@@ -1,11 +1,19 @@
 @(id: Long, evento : models.Evento)
 
-
+<html>
 <head>
 		 <meta charset="UTF-8">
 		 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
-	</head>
 	
+		<style>
+    		body {
+       			background-image: url(./assets/images/bg.png); 
+		
+    		}
+    	</style>
+	</head>
+
+
 	<body>
 	
 	<!-- Barra -->
@@ -27,23 +35,32 @@
 	<!--  Conteudo Central -->
 		<div class="col-md-6" style="width: 1000px; height: 200px">
 		
-			<div class="panel panel-primary" style=" width: 800px; height:400px; margin-left: 250px; margin-right:50px ;margin-top: 60px; border-color: #4c4c4c;">
-  				<div class="panel-heading" style="background-color: #4c4c4c; height: 100px; margin-top: 20px">Informações de evento</div>
+			<div class="panel panel-primary" style=" width: 800px; height:400px; margin-left: 250px; margin-right:50px ;margin-top: 80px; border-color: #4c4c4c;">
+  				<div class="panel-heading" style="background-color: #4c4c4c; height: 100px; font-size: 20px;"><p style="margin-top: 20px;">Informações do evento</p></div>
   					<div class="panel-body">
 
 				<div class="col-md-8">
 			    <ul class="nav nav-pills nav-stacked painel">
 			    	
-					<li><b>Nome:</b> @evento.getNome()</li>
-					<br>
+					<li style="font-size: 16px;"><b>Nome:</b> @evento.getNome()</li>
+		
 					
-					<li><b>Descricao:</b> @evento.getDescricao() </li>
-					</div>
-					<br>
-					<li><b>Data:</b> @evento.getData()</li>
+					<li style="font-size: 16px;"><b>Descricao:</b> @evento.getDescricao() </li>
+					
+					<li style="font-size: 16px;"><b>Total de participantes:</b> @evento.getParticipantes().size()</li>
+					<li style="font-size: 16px;"><b>Data:</b> @evento.getData()</li>
+					
 				</ul>
+				
+				<form action="/listaParticipantes" method="post" style="margin-left: 30px; height: 20px; margin-top: 50px;">
+		
+				<button class='btn btn-xs btn-info' type="submit" id="@evento.getId()" name="ID" value="@evento.getId()">Veja quem estará presente!</button>
+			
+				</form>	
 			</div>
 		</div>
-</div>
-</div>
+	</div>
+	</div>
 </body>
+
+</html>

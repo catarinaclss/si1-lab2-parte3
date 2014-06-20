@@ -5,11 +5,13 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /eventos				    controllers.Application.abrirCadastroDeEvento()
-GET     /listaParticipantes	    controllers.Application.listarParticipantes() 
 GET     /incricao					controllers.Application.inscricao()
-POST  	  /informacoes			controllers.Application.informacoes()
+GET     /temas                      controllers.Application.cadastrarTemas()
+GET     /novoTema					controllers.Application.novoTema(id:Long, tema:String)
+POST    /listaParticipantes	        controllers.Application.listarParticipantes() 
+POST   /informacoes			        controllers.Application.informacoes()
 POST    /cadastrarEvento			controllers.Application.cadastrarEvento()
-POST    /cadastrarParticipante		controllers.Application.inscrever(id: Long)
+POST    /novoParticipante		    controllers.Application.inscrever(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path

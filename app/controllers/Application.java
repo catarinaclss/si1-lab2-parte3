@@ -3,14 +3,9 @@ package controllers;
 import java.util.Collections;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
 import models.Evento;
-import models.Tema;
 import models.Participante;
+import models.Tema;
 import models.DAO.GenericDAO;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -18,7 +13,6 @@ import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
-import static play.data.Form.*;
 
 public class Application extends Controller {
 
@@ -56,24 +50,23 @@ public class Application extends Controller {
 	public static Result inscricao() {
 		DynamicForm requestData = Form.form().bindFromRequest();
 
-		long id = Long.parseLong(requestData.get("ID"));
-
-		Form<Participante> participante = Form.form(Participante.class);
-
-		return ok(inscricao.render(id, participante));
+		long id_evento = Long.parseLong(requestData.get("ID_EVENTO"));
+		Evento evento = dao.findByEntityId(Evento.class, id_evento);
+		
+		Form<Participante> formParticipante = Form.form(Participante.class);
+		return ok(inscricao.render(evento, formParticipante));
 	}
 
 	@Transactional
 	public static Result inscrever(Long id) {
 
-		Form<Participante> alterarForm = Form.form(Participante.class)
-				.bindFromRequest();
-		if (alterarForm.hasErrors()) {
-			return badRequest(inscricao.render(id, alterarForm));
-		}
+		Form<Participante> alterarForm = Form.form(Participante.class).bindFromRequest();
 		Participante participante = alterarForm.get();
 		Evento evento = dao.findByEntityId(Evento.class, id);
-
+		
+		if (alterarForm.hasErrors()) {
+			return badRequest(inscricao.render(evento, alterarForm));
+		}
 		evento.getParticipantes().add(participante);
 
 		dao.merge(evento);
@@ -83,8 +76,13 @@ public class Application extends Controller {
 	
 	@Transactional
 	public static Result listarParticipantes() {
-		List<Evento> eventos = dao.findAllByClassName("Evento");
-		return ok(listaParticipantes.render(eventos));
+		DynamicForm requestData = Form.form().bindFromRequest();
+
+		long ID = Long.parseLong(requestData.get("ID"));
+		Evento evento = dao.findByEntityId(Evento.class, ID);
+		
+		
+		return ok(listaParticipantes.render(ID, evento));
 	}
 	
 	@Transactional
@@ -97,6 +95,24 @@ public class Application extends Controller {
 		return ok(informacoes.render(ID, evento));
 	}
 	
+	@Transactional
+	public static Result cadastrarTemas() {
+		List<Evento> eventos = dao.findAllByClassName("Evento");
+		return ok(temas.render(eventos));
+	}
+	
+	@Transactional
+	public static Result novoTema(Long id, String tema) {
+		
+		Tema novoTema = new Tema();
+		novoTema.setNome(tema);
+		Evento evento = dao.findByEntityId(Evento.class, id);
+		evento.getTemas().add(novoTema);
+		dao.persist(evento);
+		dao.merge(evento);
+		dao.flush();
+		return redirect(routes.Application.index());
+	}
 	
 	
 }

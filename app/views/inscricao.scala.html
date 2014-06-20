@@ -1,4 +1,4 @@
-@(id: Long, participanteForm: Form[models.Participante])
+@(evento: models.Evento, participanteForm: Form[models.Participante])
 
 @import helper._
 
@@ -10,6 +10,13 @@
 		 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
 	</head>
 	
+	<style>
+    		body {
+       			background-image: url(./assets/images/bg.png); 
+		
+    		}
+    	</style>
+	
 	<body>
 	
 	<!-- Barra -->
@@ -17,7 +24,6 @@
         <div class="container">
             <div class="navbar-header">
             	<a href="#">
-            	<img src=@routes.Assets.at("images/nova_meta.png") alt="" style="margin-left: -20%; margin-bottom: -86px; margin-top: 15px; float: left;"></img>
                 <img class="imagefloat" src=@routes.Assets.at("images/logo.png") alt="" style="float: left;  margin-top: 3px; margin-left: -38px;">
           		</a>
             </div>
@@ -32,15 +38,15 @@
 	<!--  Conteudo Central -->
 		<div class="col-md-6" style="width: 1000px">
 		
-			<div class="panel panel-primary" style=" width: 800px; margin-left: 250px; margin-right:50px ;margin-top: 60px;">
+			<div class="panel panel-primary" style=" width: 800px; margin-left: 250px; margin-right:50px ;margin-top: 80px;">
   				<div class="panel-heading" style="background-color: #4c4c4c">Insira as infromaçoes abaixo</div>
   					<div class="panel-body">
-				<form action="/cadastrarEvento" method="post">
+					<form action="@routes.Application.inscrever(evento.getId())" method="post">
 				
 					<div class="form-group">
 						@inputText(participanteForm("nome"), '_label -> "Nome", 'class -> "form-control")
 							
-						@inputText(participanteForm("email"), '_label -> "Descri��o", 'class -> "form-control")							
+						@inputText(participanteForm("email"), '_label -> "E-mail", 'class -> "form-control")							
 						
 					</div>
 					<hr>

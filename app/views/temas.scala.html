@@ -1,2 +1,58 @@
-@* temas Template File *@
-@(param: Any)
+@(eventos: List[models.Evento])
+
+<html>
+
+	<head>
+		 <meta charset="UTF-8">
+		 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+		 <style>
+    		body {
+       			background-image: url(./assets/images/bg.png); 
+		
+    		}
+    	</style>
+	</head>
+	
+	<body>
+	
+	<!-- Barra -->
+    	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+            	<a href="#">
+                <img class="imagefloat" src=@routes.Assets.at("images/logo.png") alt="" style="float: left;  margin-top: 3px; margin-left: -38px;">
+          		</a>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+		
+	<br><br>
+
+	<!--  Conteudo Central -->
+		<div class="col-md-6" style="width: 1000px">
+		
+			<div class="panel panel-primary" style=" width: 800px; margin-left: 250px; margin-right:50px ;margin-top: 80px;">
+  				<div class="panel-heading" style="background-color: #4c4c4c">Adicione temas aos eventos</div>
+  					<div class="panel-body">
+
+
+ 					<form action="/novoTema" method="get"> 
+            			<select name="id" id="inputTema" class="form-control">
+                			<option value="" disabled>-- Select one --</option>
+                				@for(evento <- eventos){
+                   	 			<option value="@evento.getId()"> @evento.getNome()</option>
+                				}
+            			</select>
+            			<label for="nome"> Tema: </label>
+            			<input type="text" name="tema" id="inputTema" class="form-control"required="required">
+            			<input type="submit" class="btn btn-primary" value="ok">
+        			</form>
+					</div>
+			</div>
+				
+		</div>
+		
+	</body>

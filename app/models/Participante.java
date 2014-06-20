@@ -22,6 +22,7 @@ public class Participante {
 
 	@Column
 	@Email(message = "E-mail Obrigatório")
+	@Required(message = "Insira no formato example@example.com")
 	private String email;
 
 	public Participante() {}
