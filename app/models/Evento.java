@@ -46,6 +46,12 @@ public class Evento implements Comparable<Evento> {
 		this.participantes = new ArrayList<Participante>();
 
 	}
+	
+	public Evento(String nome, String descricao, String data){
+		this.nome = nome;
+		this.descricao = descricao;
+		this.data = data;
+	}
 
 	public List<Tema> getTemas() {
 		return temas;
